@@ -1,0 +1,62 @@
+{
+  "_from": "@coveo/search-token-server@latest",
+  "_id": "@coveo/search-token-server@1.2.1",
+  "_inBundle": false,
+  "_integrity": "sha512-xXPOkc3K2ymVMgkf86h9YkmXL2QpMskUuk45dWvNKzoMziUe9txl9q9Jt7iAX7KcWrhX7XaxASTkeJd5k65zOw==",
+  "_location": "/@coveo/search-token-server",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "@coveo/search-token-server@latest",
+    "name": "@coveo/search-token-server",
+    "escapedName": "@coveo%2fsearch-token-server",
+    "scope": "@coveo",
+    "rawSpec": "latest",
+    "saveSpec": null,
+    "fetchSpec": "latest"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/@coveo/search-token-server/-/search-token-server-1.2.1.tgz",
+  "_shasum": "5b6e53e58b444798a543fb98cac6ab3e5a667cf1",
+  "_spec": "@coveo/search-token-server@latest",
+  "_where": "/Users/jmdrolet/Documents/Projects/bassproshops/bassproshops",
+  "bundleDependencies": false,
+  "dependencies": {
+    "@coveord/platform-client": "^11.0.0",
+    "@types/express": "^4.17.11",
+    "abortcontroller-polyfill": "^1.7.1",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "isomorphic-fetch": "^3.0.0",
+    "ts-node": "^9.1.1",
+    "typescript": "^4.1.5"
+  },
+  "deprecated": false,
+  "description": "An [Express](https://www.npmjs.com/package/express) server to generate [Coveo search tokens](https://docs.coveo.com/en/1346/).",
+  "devDependencies": {
+    "@types/jest": "^26.0.23",
+    "@types/supertest": "^2.0.11",
+    "gts": "^3.1.0",
+    "jest": "^26.6.3",
+    "supertest": "^6.1.3",
+    "ts-jest": "^26.5.5"
+  },
+  "gitHead": "3a8959431d4bb0ea9a83f283afc6e65764aab6ed",
+  "license": "Apache-2.0",
+  "main": "server.ts",
+  "name": "@coveo/search-token-server",
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "npm:bump:template": "npm --no-git-tag-version version",
+    "npm:publish:template": "npm publish --access public --tag latest",
+    "start": "ts-node server.ts",
+    "test": "jest"
+  },
+  "version": "1.2.1"
+}

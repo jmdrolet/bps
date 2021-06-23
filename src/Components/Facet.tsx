@@ -94,6 +94,7 @@ const Facet: FunctionComponent<FacetProps> = (props) => {
     options: {
       numberOfValues: 5,
       field: props.field,
+      sortCriteria: 'occurrences'
     },
   });
   return <FacetRenderer {...props} controller={controller} />;

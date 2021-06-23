@@ -40,12 +40,8 @@ const QuerySummaryRenderer: FunctionComponent<QuerySummaryProps> = (props) => {
 
   const renderQuery = () => {
     if (state.hasQuery) {
-      return <Box component="span"> for {renderBold(state.query)}</Box>;
+      return <Box component="span"> for &quot;{renderBold(state.query)}&quot;</Box>;
     }
-  };
-
-  const renderDuration = () => {
-    return ` in ${state.durationInSeconds} seconds`;
   };
 
   const renderHasResults = () => {
@@ -55,7 +51,6 @@ const QuerySummaryRenderer: FunctionComponent<QuerySummaryProps> = (props) => {
           Results{renderRange()}
           {renderTotal()}
           {renderQuery()}
-          {renderDuration()}
         </Box>
         <Divider />
       </Box>

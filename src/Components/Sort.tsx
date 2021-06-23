@@ -9,6 +9,7 @@ import {
   SortOrder,
   Sort as HeadlessSort,
   SortCriterion,
+  buildFieldSortCriterion,
 } from '@coveo/headless';
 import {InputLabel, MenuItem, Select} from '@material-ui/core';
 import EngineContext from '../common/engineContext';
@@ -65,6 +66,8 @@ const Sort = () => {
     ['Relevance', buildRelevanceSortCriterion()],
     ['Date (Ascending)', buildDateSortCriterion(SortOrder.Ascending)],
     ['Date (Descending)', buildDateSortCriterion(SortOrder.Descending)],
+    ['Price (Low to High)', buildFieldSortCriterion('price',SortOrder.Ascending)],
+    ['Price (High to Low)', buildFieldSortCriterion('price',SortOrder.Descending)]
   ];
   const initialCriterion = criteria[0][1];
   const controller = buildSort(engine, {

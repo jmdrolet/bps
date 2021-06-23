@@ -1,0 +1,17 @@
+.product_price {
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: -.5px;
+    text-align: left;
+    display: inline;
+}
+
+.copy-badge {
+    color: #c50;
+    font-weight: 700;
+    margin-right: 5px;
+}
+
+.rating {
+    color: black;
+}

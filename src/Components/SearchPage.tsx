@@ -9,8 +9,13 @@ import Pager from './Pager';
 import Sort from './Sort';
 import FacetList from './FacetList';
 import ResultsPerPage from './ResultsPerPage';
+import DidYouMean from './DidYouMean';
+import BreadcrumbManager from './BreadcrumbManager';
 import {AnalyticsActions, SearchActions, Engine} from '@coveo/headless';
 import {EngineProvider} from '../common/engineContext';
+import { loadSearchConfigurationActions } from '@coveo/headless';
+import { CardActions } from '@material-ui/core';
+import { bindUrlManager } from './UrlManager';
 
 interface ISearchPageProps {
   engine: Engine;
@@ -23,7 +28,12 @@ const SearchPage: React.FunctionComponent<ISearchPageProps> = (props) => {
     const action = SearchActions.executeSearch(
       AnalyticsActions.logInterfaceLoad()
     );
+    const searchConfigurationActionCreators = loadSearchConfigurationActions(engine); 
+    const searchConfigurationAction = searchConfigurationActionCreators.updateSearchConfiguration({pipeline: 'BassPro'})
+    bindUrlManager(engine);
+    dispatch(searchConfigurationAction);
     dispatch(action);
+   ;
   }, [engine]);
 
   return (
@@ -38,12 +48,14 @@ const SearchPage: React.FunctionComponent<ISearchPageProps> = (props) => {
         <Box my={4}>
           <Grid container>
             <Grid item md={3} sm={12}>
+              <BreadcrumbManager/>
               <FacetList />
             </Grid>
             <Grid item md={9} sm={12}>
               <Box pl={3}>
                 <Grid container alignItems="flex-end">
                   <Grid item md={10}>
+                    <DidYouMean />
                     <QuerySummary />
                   </Grid>
                   <Grid item md={2}>

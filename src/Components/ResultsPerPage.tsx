@@ -49,7 +49,7 @@ const ResultsPerPageRenderer: FunctionComponent<ResultsPerPageProps> = (
 
 const ResultsPerPage = () => {
   const engine = useContext(EngineContext)!;
-  const options = [5, 10, 25];
+  const options = [16, 24, 36];
   const controller = buildResultsPerPage(engine, {
     initialState: {numberOfResults: options[0]},
   });

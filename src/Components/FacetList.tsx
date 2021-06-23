@@ -6,10 +6,13 @@ const FacetList = () => {
   return (
     <Box>
       <Box px={1} pb={1}>
-        <Typography variant="overline">Refine By</Typography>
-        <Facet field="objecttype" title="Object Type" />
-        <Facet field="filetype" title="File Type" />
-        <Facet field="author" title="Author" />
+        <Typography variant="overline">FILTER BY</Typography>
+        <Facet field="category" title="Categories" />
+        <Facet field="currentoffers" title="Current Offers" />
+        <Facet field="type" title="Type" />
+        <Facet field="brand" title="Brand" />
+        <Facet field="shoe_size" title="Shoe size" />
+        
       </Box>
     </Box>
   );

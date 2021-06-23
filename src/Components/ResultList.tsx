@@ -1,6 +1,7 @@
 import {FunctionComponent, useContext, useEffect, useState} from 'react';
-import List from '@material-ui/core/List';
+import Grid from '@material-ui/core/Grid';
 import {ListItem, Box, Typography, ListItemProps} from '@material-ui/core';
+import Rating from '@material-ui/lab/Rating';
 import {
   buildResultList,
   Result,
@@ -8,7 +9,9 @@ import {
   ResultTemplatesManager,
   ResultList as HeadlessResultList,
 } from '@coveo/headless';
+import './ResultList.css';
 import EngineContext from '../common/engineContext';
+import {ResultLink} from './ResultLink';
 
 type Template = (result: Result) => React.ReactNode;
 
@@ -16,6 +19,7 @@ interface FieldValueInterface {
   value: string;
   caption: string;
 }
+
 
 interface ResultListProps {
   controller: HeadlessResultList;
@@ -58,33 +62,38 @@ const ResultListRenderer: FunctionComponent<ResultListProps> = (props) => {
 
   headlessResultTemplateManager.registerTemplates({
     conditions: [],
-    content: (result: Result) => (
-      <ListItem disableGutters key={result.uniqueId}>
+    content: (result: any) => (
+
+      <Grid item xs={6} spacing={4} sm={3}>
         <Box my={2}>
+          {result.raw.ec_thumbnails && (
+            <img src={result.raw.ec_thumbnails} />
+          )}
+
           <Box pb={1}>
-            <ListItemLink
-              disableGutters
-              title={result.title}
-              href={result.clickUri}
-            />
+            <ResultLink result={result}/> 
           </Box>
 
-          {result.excerpt && (
-            <Box pb={1}>
-              <Typography color="textPrimary" variant="body2">
-                {result.excerpt}
-              </Typography>
-            </Box>
-          )}
+          <Box pb={1}>
+            {result.raw.ec_price && (
+              <span className="product_price">${result.raw.ec_price}</span>
+            )}
+          </Box>
 
-          {result.raw.source && (
-            <FieldValue caption="Source" value={result.raw.source} />
+          <Box pb={1}>
+          {result.raw.currentoffers && result.raw.currentoffers == "New" && (
+            <span className="copy-badge">{result.raw.currentoffers}!</span>
           )}
-          {result.raw.objecttype && (
-            <FieldValue caption="Object Type" value={result.raw.objecttype} />
-          )}
+          </Box>
+          
+
+          <Box component="fieldset" mb={3} borderColor="transparent">
+            <Rating name="disabled" className="rating" value={result.raw.ec_rating} precision={0.5} disabled /><span>{result.raw.bvavgrating}</span>
+          </Box>
+
+
         </Box>
-      </ListItem>
+      </Grid>
     ),
   });
 
@@ -93,18 +102,22 @@ const ResultListRenderer: FunctionComponent<ResultListProps> = (props) => {
   ]);
 
   return (
-    <List>
+    <Grid container spacing={2}>
       {state.results.map((result: Result) => {
         const template = headlessResultTemplateManager.selectTemplate(result);
         return template ? template(result) : null;
       })}
-    </List>
+    </Grid>
   );
 };
 
 const ResultList = () => {
   const engine = useContext(EngineContext)!;
-  const controller = buildResultList(engine);
+  const controller = buildResultList(engine, {
+    options: {
+      fieldsToInclude: ['ec_thumbnails', 'ec_price', 'currentoffers', 'ec_rating'],
+    }
+  });
   return <ResultListRenderer controller={controller} />;
 };
 
