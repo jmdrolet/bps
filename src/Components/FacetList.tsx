@@ -12,7 +12,10 @@ const FacetList = () => {
         <Facet field="type" title="Type" />
         <Facet field="brand" title="Brand" />
         <Facet field="shoe_size" title="Shoe size" />
-        
+        <Facet field="clothing_size" title="Clothing Size" />
+        <Facet field="retailstoreinventory" title="Inventory" />
+        <Facet field="color" title="Color" />
+        <Facet field="type" title="Type" />
       </Box>
     </Box>
   );

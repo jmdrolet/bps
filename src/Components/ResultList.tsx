@@ -12,6 +12,7 @@ import {
 import './ResultList.css';
 import EngineContext from '../common/engineContext';
 import {ResultLink} from './ResultLink';
+import { ProductThumbnail } from './ProductThumbnail';
 
 type Template = (result: Result) => React.ReactNode;
 
@@ -66,14 +67,13 @@ const ResultListRenderer: FunctionComponent<ResultListProps> = (props) => {
 
       <Grid item xs={6} spacing={4} sm={3}>
         <Box my={2}>
-          {result.raw.ec_thumbnails && (
-            <img src={result.raw.ec_thumbnails} />
-          )}
-
+          <ProductThumbnail result={result}/>
+  
           <Box pb={1}>
             <ResultLink result={result}/> 
           </Box>
 
+      
           <Box pb={1}>
             {result.raw.ec_price && (
               <span className="product_price">${result.raw.ec_price}</span>
@@ -115,7 +115,7 @@ const ResultList = () => {
   const engine = useContext(EngineContext)!;
   const controller = buildResultList(engine, {
     options: {
-      fieldsToInclude: ['ec_thumbnails', 'ec_price', 'currentoffers', 'ec_rating'],
+      fieldsToInclude: ['ec_thumbnails', 'ec_price', 'currentoffers', 'ec_rating', 'product_color', 'product_color_image'],
     }
   });
   return <ResultListRenderer controller={controller} />;
