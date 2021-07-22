@@ -29,7 +29,7 @@ const SearchPage: React.FunctionComponent<ISearchPageProps> = (props) => {
       AnalyticsActions.logInterfaceLoad()
     );
     const searchConfigurationActionCreators = loadSearchConfigurationActions(engine); 
-    const searchConfigurationAction = searchConfigurationActionCreators.updateSearchConfiguration({pipeline: 'BassPro'})
+    const searchConfigurationAction = searchConfigurationActionCreators.updateSearchConfiguration({pipeline: 'BassPro', searchHub: 'BassPro'})
     bindUrlManager(engine);
     dispatch(searchConfigurationAction);
     dispatch(action);
