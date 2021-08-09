@@ -1,6 +1,7 @@
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import Facet from './Facet';
+import PriceFacet from './PriceFacet';
 
 const FacetList = () => {
   return (
@@ -16,6 +17,7 @@ const FacetList = () => {
         <Facet field="retailstoreinventory" title="Inventory" />
         <Facet field="color" title="Color" />
         <Facet field="type" title="Type" />
+        <PriceFacet />
       </Box>
     </Box>
   );
